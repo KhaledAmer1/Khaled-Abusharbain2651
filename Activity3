@@ -1,0 +1,379 @@
+'''
+
+
+Docs strings for Group 8 acitivity 3
+----------work done by each member---------
+Zarak khan :printing csv regular file, reading csv, prep and load stages , Visuzalization Help, Anazlying
+ -data stage, insertion sort ascend , descend
+Khaled Abusharbain: Comments, Visualize data stage,mn function , help with insertion sort, Proof read code 
+     checking for bugs
+
+Nour:function, comments, docs strings
+
+
+Github repos
+
+
+
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+import csv
+
+#preparing and loading phase function 
+
+
+#load data stage
+def printing_regular_csv_file(file_csv):
+    try:
+        with open(file_csv,'r')as File2:
+            csv_reader=csv.reader(File2)
+         
+     
+            for x in csv_reader:
+                print(x)
+    except FileNotFoundError:
+        print('file not found')
+        printing_regular_csv_file(file_csv)
+             
+
+def readingcsv_informationnnnn(file_csv):
+    
+    try:
+        with open(file_csv, 'r') as File1:
+            csv_reader = csv.reader(File1)
+           
+
+
+            decision_of_which_row=int(input('put the column number you want here '))                
+
+            
+            next(csv_reader)
+            index_start=0
+            
+            array=[]
+            for i in csv_reader:
+                
+                #we can at later date remove the print amyways as we need array input here soon 
+                y=i[decision_of_which_row]
+                
+                
+
+                array.append(str(y))
+            print(array)
+
+        '''
+        here we will print the issues in the array when the original array is made 
+        #here we need 2 arrays to ask user if issues '''
+        #printing_regular_array_erors(decision_of_which_row)
+              
+    except:
+        print('you need to choose a numerical column instead of this ')   
+        readingcsv_informationnnnn('data.csv')  
+
+        #remember to add some more except statments  
+
+
+    return array   
+
+
+def printing_regular_array_erors(decision_of_which_row):
+    with open('data.csv','r')as File3:
+        csvreadss=csv.reader(File3)
+        array3=[]
+        for i in csvreadss:
+            g=i[decision_of_which_row]
+            array3.append(g)
+        print(array3)     
+                
+            
+#clean data function 
+def cleandata_number_spots(array):
+    
+
+    x=0
+    for i in array:
+        if i =='':
+            x=x+1
+    return x   
+# chnage value
+def change_values(array5,x):
+    
+    
+
+    
+    
+    for i in range(len(array5)):  # Iterate over indices of the list
+        if array5[i] == '':  # Check if the element is an empty string
+            array5[i] = str(x)  # Assign x to the empty string, converting x to a string
+        
+            array5[i]=str(x)
+    #print(array_altered) 
+    return array5
+       
+
+
+def average_of_list(array4):
+    
+    total=0
+    j=0
+    for i in range(len(array4)):
+        try:
+            integer_version=int(array4[i])
+            total=total+integer_version
+            j=j+1
+            average=total/j
+
+
+     
+
+
+
+
+        except:
+            print('')
+    #print(total)  
+    #print(j)    
+    return average
+
+
+
+
+def minimum_of_list(array3):
+    
+    
+    # Initialize the lowest number with a large number to start with
+    lowest_num = float('inf')  #
+    
+    
+    for element in array3:
+       
+        if element == '':
+            continue
+        
+        # Convert the element to an integer
+        num = int(element)
+        
+        # Compare with the current lowest number
+        if num < lowest_num:
+            lowest_num = num
+    
+    # Return the lowest number found
+    return lowest_num
+
+
+
+
+def max_value_oflist(array6):
+    
+    
+    # Initialize the lowest number with a large number to start with
+    higest = float('0')  #
+    
+    
+    for element in array6:
+       
+        if element == '':
+            continue
+        
+        # Convert the element to an integer
+        num = int(element)
+        
+        # Compare with the current lowest number
+        if num > higest:
+            higest= num
+
+    
+    # Return the lowest number found
+
+    return higest
+
+
+
+
+#load stage done
+
+
+
+
+
+'''anazlyze the data stage the code here , for the array'''
+def insertion_sort_ascending(end_array):
+    for i in range(1,len(end_array)):
+        j=i
+        while end_array[j-1] > end_array[j] and j>0:
+            end_array[j-1],end_array[j]=end_array[j],end_array[j-1]
+            j=j-1
+    return end_array        
+
+
+
+def insertion_sort_descending(end_array):
+    for i in range(1,len(end_array)):
+        j=i
+        while end_array[j-1] < end_array[j] and j>0:
+            end_array[j-1],end_array[j]=end_array[j],end_array[j-1]
+            j=j-1
+    return end_array        
+
+
+    
+
+
+
+    '''visualization of the code itself '''
+
+
+#def Visualizaze_code(end_array):
+    #print('hello')
+    #for i in range(len(end_array)):
+        #integered=int(end_array[i])
+        #inted=integered/5
+        #stred=str(inted)
+        #aesterix='*'
+        #print(stred*aesterix)
+
+def visualize_data(column_data):
+    for value in column_data:
+        if value.isdigit():
+            num_value = int(value)
+            stars_count = num_value // 5
+            if stars_count > 20:
+                stars_count = 20
+            print('*' * stars_count)
+        else:
+            print('Non-numerical value:', value)
+
+
+
+
+
+
+
+
+
+
+
+
+def main():
+    
+    
+    
+    
+    
+    file_for_csv=input('put the file name here ')
+    printing_regular_csv_file(file_for_csv)
+    end_array=readingcsv_informationnnnn(file_for_csv)
+    #array after printing column here 
+
+    number=cleandata_number_spots(end_array)
+    if number > 0:
+        print('you have empty spots in the column that you have chosen')
+        print('Would you like to replace empty cells from column with:')
+        print('1. Maximum value from column')
+        print('2. Minimum value from column')
+        print('3. Average value from column')
+        print('')
+        chosen=int(input('put the number here '))
+        #altered_list=change_values(end_array)
+        #average_of_list()
+
+        '''
+        when clicking 1 it dosnet work for our csv'''
+        if number==1:
+            y=max_value_oflist(end_array)
+            change_values(end_array,y)
+            print('all values replaced with maximum values that were empty previously ')
+            print('')
+        elif number==2:
+            j=minimum_of_list(end_array)
+            change_values(end_array,j)
+            print('all empty values replaced with minimum values')
+            print('')
+        elif number==3:
+            l=average_of_list(end_array)
+            change_values(end_array,l)
+            print(' all numbers replaced with average values in empty places')
+            print('')
+        else:
+            print('error try again')
+            print('')   
+            
+    else:
+        print('ther is no empty spots in the csv file') 
+        print('')
+
+    # to check array w or n   print(end_array)
+    #working end of array
+    print('your data has been lodaded correctly, here is your printed data ', end_array)
+    print('')
+
+    '''stage 3 here '''
+    print('Stage 3: Analyse data')
+    print('Please choose if you want to sort column in:')
+    print('1. Ascending order')
+    print('2. Descending order')
+    print('')
+    print('')
+    try:
+
+        userchoice2nd=int(input('please enter a choice: '))
+        if userchoice2nd == 1:
+            print('hello')
+            sorted=insertion_sort_ascending(end_array)
+            print('here is your ascending sort:',sorted)
+            
+        elif userchoice2nd==2:
+            print('choice2 taken')
+            sort=insertion_sort_descending(end_array)
+            
+            print('here is your sorted descedning :',sort)
+
+        else:
+            print('error')  
+    except:
+        print('')    
+
+
+    '''stage 4 here'''
+
+    print('Stage 4: Visualise Data')
+    print('Column: Units sold')
+    print('Legend: each  *  represents 5 units')
+    
+    visualize_data(end_array)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+main()
